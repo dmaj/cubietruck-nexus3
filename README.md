@@ -189,7 +189,7 @@ I do not provide the containers on hub.docker.com.
 With Oracle this could easily lead to problems.
 #### First Oracle Java
 The openjdk is too slow for some reason. We take the Java from Oracle.
-Change to "~/java/oracle". Place the Dockerfile.
+Create and change to "~/java/oracle". Place the Dockerfile.
 Download Java:
 ```
 curl -L -b "oraclelicense=a" -o jdk-8u181-linux-arm32-vfp-hflt.tar.gz http://download.oracle.com/otn-pub/java/jdk/8u181-b13/96a7b8442fe848ef90c96a2fad6ed6d1/jdk-8u181-linux-arm32-vfp-hflt.tar.gz
