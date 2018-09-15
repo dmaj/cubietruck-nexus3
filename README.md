@@ -245,7 +245,7 @@ Building the image for Oracle.
 ```
 docker build -t dmaj/java:8 .
 ```
-### Second nexus 3
+#### Second nexus 3
 Switch to "~/nexus". Copy and build the docker file.
 ```
 docker build --rm=true --tag=dmaj/nexus3 .
