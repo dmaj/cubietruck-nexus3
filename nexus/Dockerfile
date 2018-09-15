@@ -15,8 +15,8 @@
 FROM alpine:3.8 as loader
 
 ARG NEXUS_VERSION=3.13.0-01
-ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSI                                            ON}-unix.tar.gz
-ARG NEXUS_DOWNLOAD_SHA256_HASH=5d1890f45e95e2ca74e62247be6b439482d2fe4562a7ec8ae                                            905c4bdba6954ce
+ARG NEXUS_DOWNLOAD_URL=https://download.sonatype.com/nexus/3/nexus-${NEXUS_VERSION}-unix.tar.gz
+ARG NEXUS_DOWNLOAD_SHA256_HASH=5d1890f45e95e2ca74e62247be6b439482d2fe4562a7ec8ae905c4bdba6954ce
 
 RUN wget -q -O nexus.tgz $NEXUS_DOWNLOAD_URL
 RUN tar -xzvf nexus.tgz
@@ -46,6 +46,7 @@ RUN addgroup -g 1000 nexus && \
     adduser nexus -S -h /home/x -u 1000 -G nexus
 
 
+
 RUN printf "#!/bin/bash\n\
 \n\
 cd /opt/sonatype/nexus\n\
@@ -65,6 +66,6 @@ VOLUME ${NEXUS_DATA}
 EXPOSE 8081
 USER nexus
 
-ENV INSTALL4J_ADD_VM_PARAMS="-Xms1000m -Xmx1000m -XX:MaxDirectMemorySize=800m -D                                            java.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"
+ENV INSTALL4J_ADD_VM_PARAMS="-Xms1000m -Xmx1000m -XX:MaxDirectMemorySize=800m -Djava.util.prefs.userRoot=${NEXUS_DATA}/javaprefs"
 
 CMD ["sh", "-c", "${SONATYPE_DIR}/start-nexus-repository-manager.sh"]
